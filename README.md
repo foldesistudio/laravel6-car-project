@@ -37,7 +37,7 @@ Set up database tables and seed default records
 $ php artisan migrate:fresh --seed  
 ```  
 
-This project came with predefiniated admin
+This project came with predefined admin
 ```  
 email: admin@admin.com
 password: admin  
