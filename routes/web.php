@@ -66,20 +66,22 @@ Route::resources - request cheat sheet:
     Route::resource('cars2','Car2Controller');
 
     Route::get("/user/{user}/edit/", "UsersController@edit")->name("user.edit");
-
+    Route::put("/user/{user}", "UsersController@update")->name("user.update");
+    Route::delete("/user/{user}", "UsersController@destroy")->name("user.destroy");
 
 });
 
-
+// admin
 Route::middleware("can:edit_forum")->group(function () {
    Route::get("/user/", "UsersController@index")->name("user.index");
 
     Route::get("/user/{user}", "UsersController@show")->name("user.show");
 
-   // Route::get("/user/{user}/edit/", "UsersController@edit")->name("user.edit");
+/*    Route::get("/user/{user}/edit/", "UsersController@edit")->name("user.edit");
 
     Route::put("/user/{user}", "UsersController@update")->name("user.update");
     Route::delete("/user/{user}", "UsersController@destroy")->name("user.destroy");
+*/
 
     /* JSON  - only json.index path available */
 

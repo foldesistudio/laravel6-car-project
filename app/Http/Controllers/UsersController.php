@@ -120,27 +120,41 @@ class UsersController extends Controller
             'phone' => ['required', "min:6", new PhoneNumber]
         ]);
 
-        // ha nem admin, akkor  sajnos nem módosíthatja, hogy admin
-        if (request("role") == 1) {
 
-            /* $moderator = App\Role::firstOrCreate(["name" => "moderator"]);
-             $editForum = App\Ability::firstOrCreate (["name" => "edit_forum"]);
-             $moderator->allowTo($editForum);*/
+        $response = Gate::inspect('edit_forum');
 
-            $moderator = "moderator";
-            $user->assignRole($moderator);
+
+        if ($response->allowed()) {
+
+            // ha nem admin, akkor  sajnos nem módosíthatja, hogy admin
+            if (request("role") == 1) {
+
+                /* $moderator = App\Role::firstOrCreate(["name" => "moderator"]);
+                 $editForum = App\Ability::firstOrCreate (["name" => "edit_forum"]);
+                 $moderator->allowTo($editForum);*/
+
+                $moderator = "moderator";
+                $user->assignRole($moderator);
+            } else {
+
+                \DB::table('role_user')->where('user_id', $user->id)->delete();
+
+
+            }
+            $user->status = request("status");
+
         } else {
 
-            \DB::table('role_user')->where('user_id', $user->id)->delete();
-
-
+            $user = \Auth::user();
         }
+
+
 
         // adatbázis               honnan
         $user->name = request("name");
         $user->email = request("email");
         $user->phone = request("phone");
-        $user->status = request("status");
+
         $user->save();
 
         return redirect(route("user.edit", $user->id));
@@ -154,7 +168,22 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-        return redirect()->route('user.index');
+
+        $response = Gate::inspect('edit_forum');
+
+
+        if ($response->allowed()) {
+
+            $user->delete();
+            return redirect()->route('user.index');
+
+        } else {
+            \Auth::user()->delete();
+
+            return redirect("/");
+        }
+
+
+
     }
 }
