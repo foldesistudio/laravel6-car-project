@@ -24,9 +24,9 @@
                             @can("edit_forum")
                                és összesen az adatbázisban
                                 {{ App\Car2::count() }}
-                                jármű van!
+                                jármű van
                                 @endcan
-
+                            !
                         </p></div>
                 </div>
             </div>
