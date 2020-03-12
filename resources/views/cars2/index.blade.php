@@ -19,7 +19,7 @@
                             <div class="justify-content-center row">
 
                             <form action="{{route("cars2.index")}}" method="get" target="_self">
-                            @csrf
+{{--                            @csrf--}}
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
                                     <label  class="sr-only" for="inlineFormInput">Autó típus</label>

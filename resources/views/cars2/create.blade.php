@@ -33,7 +33,7 @@
                                 <label for="licence_plate" class="col-md-4 col-form-label text-md-right">Rendszám</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control @error('licence_plate') is-invalid @enderror" id="licence_plate" name="licence_plate"
-                                           value="{{ old('licence_plate') }}" required autocomplete="licence_plate" autofocus>
+                                           value="{{ old('licence_plate') }}" required autocomplete="licence_plate" autofocus placeholder="ABC-123">
                                     @error('licence_plate')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

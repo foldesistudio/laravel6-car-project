@@ -122,14 +122,14 @@
                                 <div class="form-group">
                                     <div class="col-md-12 offset-md-4">
 
-                                    <button type="submit" class="btn btn-danger" onclick="return myFunction();">❌ Felhsználó törlése</button>
+                                    <button type="submit" class="btn btn-danger" onclick="return myFunction();">❌ Felhasználó törlése</button>
                                 </div>
                                 </div>
                             </form>
                     </div>
                             <script>
                                 function myFunction() {
-                                    if(!confirm("Bizonyosan törlésre kerül?"))
+                                    if(!confirm("Bizonyosan törlésre kerül ez a felhasználó?"))
                                         event.preventDefault();
                                 }
                             </script>
